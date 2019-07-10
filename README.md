@@ -35,3 +35,7 @@ Call `./record.sh <nameOfTrajectory> w` to record a trajectory with the specifie
 
 The relevant script is rundmp.sh. Again the name of the trajectory you want to run needs to be specified. Also the *current_episode* needs to be set accordingly (always one higher than what you want to see, so set it to 1 if you want to run 0, yes, weird, but a leftover I did not bother fixing)
 Type `./rundmp.sh <nameOfTrajectory> r` for the trajectory to be executed on the robot. 
+
+## Acknowledgment
+The python part of the project is based on work from this repository: https://github.com/studywolf/pydmps
+Thanks also for the great resources in the corresponding blog: https://studywolf.wordpress.com/2013/11/16/dynamic-movement-primitives-part-1-the-basics/
