@@ -1,0 +1,12 @@
+README.md
+setup.cfg
+setup.py
+pydmps/__init__.py
+pydmps/cs.py
+pydmps/dmp.py
+pydmps/dmp_discrete.py
+pydmps/dmp_rhythmic.py
+pydmps.egg-info/PKG-INFO
+pydmps.egg-info/SOURCES.txt
+pydmps.egg-info/dependency_links.txt
+pydmps.egg-info/top_level.txt

@@ -1,0 +1,12 @@
+Metadata-Version: 1.1
+Name: pydmps
+Version: 0.2
+Summary: Python implementation of Dynamic Movement Primitives (DMPs)
+Home-page: https://github.com/studywolf/pydmps
+Author: Travis DeWolf
+Author-email: travis.dewolf@gmail.com
+License: UNKNOWN
+Download-URL: https://github.com/studywolf/pydmps/tarball/0.2
+Description: UNKNOWN
+Keywords: dmps,dynamic movement primitives,trajectory generation,control
+Platform: UNKNOWN
