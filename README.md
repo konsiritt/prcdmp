@@ -2,6 +2,10 @@
 DMP formulation after "Learning and generalization of motor skills by learning from demonstration", Pastor et. al 2009 
 (https://ieeexplore.ieee.org/abstract/document/5152385)
 
+## setup
+The python part of this project uses the environment pydmp (specified in pydmp.yml). Using Anaconda (https://www.anaconda.com/distribution/#download-section) you can easily set up this environment using the following command in the source directory of this repo: 
+``` conda env create -f pydmp.yml ```
+
 ## configuration
 Trajectories are organized in folders for each trajectory in *data/*. In *data/nameOfTrajectory/conf/dataset.json* you can configure the following:
 
