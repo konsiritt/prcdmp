@@ -1,10 +1,8 @@
 # prcdmp
-------------------------
 DMP formulation after "Learning and generalization of motor skills by learning from demonstration", Pastor et. al 2009 
 (https://ieeexplore.ieee.org/abstract/document/5152385)
 
 ## configuration
-------------------------
 Trajectories are organized in folders for each trajectory in *data/*. In *data/nameOfTrajectory/conf/dataset.json* you can configure the following:
 
 Field     | Description|
@@ -24,7 +22,6 @@ dofs | degrees of freedom
 dt | timestep size in [s]
 
 ## usage
-------------------------
 ### recording trajectories
 
 The script record.sh is for recording a new trajectory with the robot specified in conf.json. 
