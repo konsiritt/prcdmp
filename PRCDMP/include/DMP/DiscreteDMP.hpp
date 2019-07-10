@@ -8,6 +8,7 @@
 #include <math.h>
 #include "DMP.hpp"
 #include "UTILS/trajectoryUtils.h"
+#include <iostream>
 
 class DiscreteDMP : public DMP
 {
@@ -28,7 +29,24 @@ public:
                 std::vector<std::vector<double>> &w, std::vector<double> &gainA,
                 std::vector<double> &gainB, std::string pattern ="discrete");
 
+    DiscreteDMP(int nDMPs, double dt, std::vector<double> &y0, std::vector<double> &goal,
+                std::vector<double> &gainA, std::vector<double> &gainB, std::string pattern ="discrete");
+
+    DiscreteDMP(){std::cerr<<"created an empty instance of DiscreteDMP"<<std::endl;};
+
     ~DiscreteDMP(){};
+
+    void setInitialPosition (std::vector<double> &y_0);
+
+    void setFinalPosition (std::vector<double> &y_end);
+
+    void setEndThreshold (double thrsh);
+
+//    std::vector<double> step( std::vector<double> &externalForce, double tau=1.0, double error=0.0);
+
+//    std::vector<double> simpleStep( std::vector<double> &externalForce, double tau=1.0, double error=0.0);
+    void writeTrajToText(const std::vector<std::vector<double>> &traj, std::string file_name);
+
 
 protected:
     /// generates the Gaussian basis function

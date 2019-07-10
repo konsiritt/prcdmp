@@ -18,7 +18,8 @@ namespace UTILS{
 
     bool loadTrajectory(const std::string & fileName, std::vector<std::vector<double>> & XYZdata,
                                  std::vector<double> & times, char innerSeparator);
-    void writeTrajToText(const std::vector<std::vector<double> > &traj, std::string file_name);
+    void writeTrajToText(const std::vector<std::vector<double> > &traj, std::string file_name);    
+    void writeTrajTimeToText(const std::vector<std::vector<double>> &traj, std::vector<double> &time, std::string file_name);
 
     /**
      * Move to some math util file

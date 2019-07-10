@@ -9,6 +9,7 @@
 #include <string>
 #include <math.h>
 #include <vector>
+#include <iostream>
 
 /**
  * @brief The CanonicalSystem class covers the phase description of the dmps
@@ -20,6 +21,8 @@ public:
 
     /// gainA is chosen such, that x(t=1.0)=0.01
     CanonicalSystem(double dt, std::string pattern="discrete", double gainA=4.60517);//1.0);
+
+    CanonicalSystem(){std::cerr<<"created an empty instance of CanonicalSystem"<<std::endl;};
 
     void resettState();
 

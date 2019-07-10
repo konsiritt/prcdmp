@@ -24,9 +24,29 @@ class DMP
 
 public:
 
+    /**
+     * @brief DMP: gives a dynamic movement primitive, describing a trajectory
+     * @param nDMPs: dimensions of the dmp, degrees of freedom of described trajectory
+     * @param nBFs: amount of basis functions for the dmp
+     * @param dt: size of time step
+     * @param y0: vector of initial positions
+     * @param goal: vector of goal positions that are achieved by attractor dynamics
+     * @param w: matrix of weighting terms for basis functions that force the trajectory to its shape
+     * @param gainA: gain parameter for the attractor dynamics
+     * @param gainB: gain parameter for the attractor dynamics
+     * @param pattern: discrete or cyclic
+     */
     DMP(int nDMPs, int nBFs, double dt, std::vector<double> &y0, std::vector<double> &goal,
             std::vector<std::vector<double>> &w, std::vector<double> &gainA, std::vector<double> &gainB, std::string pattern="discrete");
 
+    /**
+     * @brief DMP: same as before, no weighting terms -> leads to simple attractor dynamics (critically damped)
+     */
+    DMP(int nDMPs, double dt, std::vector<double> &y0, std::vector<double> &goal, std::vector<double> &gainA,
+        std::vector<double> &gainB, std::string pattern="discrete");
+
+    DMP(){std::cerr<<"created an empty instance of DMP"<<std::endl;};
+   
     virtual ~DMP(){};
 
     /**
@@ -50,15 +70,53 @@ public:
      * @param externalForce
      * @param tau time scaling factor (<1 -> slowed down)
      * @param error
-     * @return
+     * @return the dmp velocity vector
      */
     virtual std::vector<double> step( std::vector<double> &externalForce, double tau=1.0, double error=0.0);
 
+    /**
+     * @brief simpleStep steps only the attractor dynamics of the system without forcing term
+     * @param externalForce
+     * @param tau
+     * @param error
+     * @return the dmp velocity vector
+     */
+    virtual std::vector<double> simpleStep(std::vector<double> &externalForce, const double &tau=1.0);
+
+    /**
+     * @brief resettState resets all parameters to allow a restart of the dmp
+     */
     virtual void resettState();
 
+    /**
+     * @brief getTimesteps
+     * @return amount of timesteps involved over the course of the dmp
+     */
     int getTimesteps();
 
+    /**
+     * @brief getDY
+     * @return the dmp velocities/ change in position
+     */
+    std::vector<double> getY();
+    /**
+     * @brief getDY
+     * @return the dmp velocities/ change in position
+     */
     std::vector<double> getDY();
+
+    /**
+     * @brief getTrajFinished returns boolean that determines end of the trajectory on the basis of
+     * the canonical system reaching below a certain threshold -> the system dynamics do not change anymore
+     * @return
+     */
+    bool getTrajFinished();
+
+    /**
+     * @brief setCouplingTerm
+     * @param couplTerm: adapts the coupling term to be used in the dmp
+     */
+    void setCouplingTerm(std::vector<double> &couplTerm);
 
 protected:
 
@@ -75,15 +133,27 @@ protected:
     /// initial positions
     std::vector<double> y0;
     /// final/goal positions
-    std::vector<double> goal;
+    std::vector<double> goal;    
     /// gain alpha
     std::vector<double> gainA;
     /// gain beta
     std::vector<double> gainB;
+    /// coupling term per dof
+    std::vector<double> couplingTerm;
     /// Number of DMP DOF
     int nDMPs;
     /// Number of basis functions
     int nBFs;
+    /// threshold to determine end of trajectory, compared to the canonical system state
+    double endThreshold;
+    /// flag to determine end of trajectory
+    bool trajFinished;
+    /// amount of timesteps for the trajectory
+    int timesteps;
+    /// timestep size
+    double dt;
+    /// weights of the forcing term
+    std::vector<std::vector<double>> w;
 
     CanonicalSystem cs;
 
@@ -97,12 +167,7 @@ protected:
     virtual void checkOffset();
 
 private:
-    /// amount of timesteps for the trajectory
-    int timesteps;
-    /// timestep size
-    double dt;
-    /// weights of the forcing term
-    std::vector<std::vector<double>> w;
+    bool doSimpleRollout;
  };
 
 #endif //PROJECT_DMP_H

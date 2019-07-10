@@ -145,6 +145,29 @@ namespace UTILS{
         myfile.close();
     }
 
+    void writeTrajTimeToText(const std::vector<std::vector<double>> &traj, std::vector<double> &time, std::string file_name)
+    {
+        std::ofstream myfile;
+        myfile.open(file_name);
+        for (int i = 0; i < traj.size(); i++)
+        {
+            myfile << time[i] << ',';
+            for (int j = 0; j < traj[i].size(); j++)
+            {
+                if (j == traj[i].size()-1)
+                {
+                    myfile << traj[i][j];
+                }
+                else {
+                    myfile << traj[i][j] << ',' ;
+                }
+
+            }
+            myfile <<std::endl;
+        }
+        myfile.close();
+    }
+
 
 }
 

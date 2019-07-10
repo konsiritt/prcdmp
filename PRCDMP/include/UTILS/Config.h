@@ -14,6 +14,9 @@ class Config
 public:
     Config(std::string datasetPath);
 
+    // basePath_ ends in */data/
+    Config(std::string datasetPath, std::string basePath_);
+
     void fillTrajectoryPath(int episodeNr);
 
     // Getters
@@ -26,6 +29,7 @@ public:
     std::string getReplayTrajectoryPathQ();
     std::string getDmpConfPath();
     std::string getDataConfPath();
+    std::string getConfBasePath();
 
 private:
 

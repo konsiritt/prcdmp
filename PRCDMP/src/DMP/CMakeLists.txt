@@ -3,14 +3,6 @@ project(DMP)
 
 set(CMAKE_CXX_STANDARD 11)
 
-set(    CMAKE_RUNTIME_OUTPUT_DIRECTORY
-        ${CMAKE_HOME_DIRECTORY}/RLF/bin
-    )
-
-set(    CMAKE_LIBRARY_OUTPUT_DIRECTORY
-        ${CMAKE_HOME_DIRECTORY}/lib
-    )
-
 find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
 
